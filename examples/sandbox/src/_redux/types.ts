@@ -6,4 +6,3 @@ export type IState = {
 };
 
 export type ITriggers = IAppTriggers;
-

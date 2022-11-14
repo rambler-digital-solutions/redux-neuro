@@ -19,14 +19,14 @@ export const getNullReducersNames = <AC, StoreType>(
 
 export const getTriggerAndStatus = (
   actionType: string
-): { trigger: string; status: string | null } => {
+): { targetName: string; methodName: string | null } => {
   const parts = actionType.split('/');
 
   return {
-    trigger: parts[0],
-    status: parts[1] || null,
+    targetName: parts[0],
+    methodName: parts[1] || null,
   };
 };
 
-export const getActionType = (trigger: string, status: string): string =>
-  trigger + (status ? `/${status}` : '');
+export const getActionType = (targetName: string, methodName: string): string =>
+targetName + (methodName ? `/${methodName}` : '');

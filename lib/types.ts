@@ -134,6 +134,7 @@ export type MakeBiteProcessorType<
   opts?: DefautOpts<ITrigger, IRootTrigger, IState, BiteName>;
   customOpts?: unknown;
   canTrigger?: Array<keyof IRootTrigger>;
+  onError?: (actionType: string, error: Error) => void
 };
 
 export type MakeBiteType<ITrigger, IRootTrigger, IState, IRootState> = {
@@ -167,9 +168,9 @@ export type ScriptUpdateArgsType<
   PhK extends TriggerPhaseKeys<ITrigger, Tr>
 > = {
   payload: TriggerPhasePayload<ITrigger, Tr, PhK>;
-  targetName: ITrigger;
+  targetName: Tr;
   targetMethod: PhK;
   sourceName: string;
   sourceUid: string;
-  hangOn: (args?: { keepUpdate: boolean }) => void;
+  hold: (args?: { keepUpdate: boolean }) => void;
 };

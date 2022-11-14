@@ -10,6 +10,19 @@ function pickReducer(reducers: any, trigger: string, status: string): any {
   }
 }
 
+function tryUpdate(instance, updateArgs, actionType, onError) {
+    try {
+      instance.update(updateArgs)
+    } catch(error) {
+      if(onError) {
+        onError(actionType, error)
+      }
+      else {
+        throw error
+      }
+    }
+}
+
 export function BeforeUpdate(
   instance,
   state,
@@ -17,11 +30,12 @@ export function BeforeUpdate(
   actionPayload,
   sourceName,
   reducers,
-  sliceName
+  sliceName,
+  onError
 ) {
-  const { trigger, status } = getTriggerAndStatus(actionType);
+  const { targetName, methodName } = getTriggerAndStatus(actionType);
 
-  const reducer = pickReducer(reducers, trigger, status);
+  const reducer = pickReducer(reducers, targetName, methodName);
   let propagate = true;
   let keepUpdate = false;
   const stopPropagate = (args?: { keepUpdate: boolean }) => {
@@ -31,27 +45,27 @@ export function BeforeUpdate(
 
 
   if (instance.update) {
-    const { trigger, status } = getTriggerAndStatus(actionType);
+    const { targetName, methodName } = getTriggerAndStatus(actionType);
     const updateArgs = {
       payload: actionPayload,
-      trigger,
-      status,
+      targetName,
+      methodName,
       sourceName,
-      hangOn: stopPropagate,
+      hold: stopPropagate,
     };
 
 
     if(instance.updatable) {
-      const foundKey = Object.keys(instance.updatable).find( u => u === getActionType(updateArgs.trigger, updateArgs.status) )
+      const foundKey = Object.keys(instance.updatable).find( u => u === getActionType(updateArgs.targetName, updateArgs.methodName) )
       if(foundKey) {
         instance[instance.updatable[foundKey]](updateArgs)
       }
       else {
-        instance.update(updateArgs);
+        tryUpdate(instance,updateArgs, actionType, onError);
       }
     }
     else {
-      instance.update(updateArgs);
+      tryUpdate(instance,updateArgs, actionType, onError);
     }
     if (!propagate && keepUpdate) {
       const stateCopy = { ...state };

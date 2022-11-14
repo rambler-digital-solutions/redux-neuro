@@ -1,12 +1,12 @@
 import { getTriggerAndStatus } from '../utils';
 
 export function matchInitTrigger(config, actionType) {
-  const { trigger, status } = getTriggerAndStatus(actionType);
-  if (config[trigger]) {
-    if (!config[trigger]['initOn']) {
-      return { config: config[trigger], trigger };
-    } else if (config[trigger] && config[trigger]['initOn'] === status) {
-      return { config: config[trigger], trigger };
+  const { targetName, methodName } = getTriggerAndStatus(actionType);
+  if (config[targetName]) {
+    if (!config[targetName]['initOn']) {
+      return { config: config[targetName], targetName };
+    } else if (config[targetName] && config[targetName]['initOn'] === methodName) {
+      return { config: config[targetName], targetName };
     }
   }
 

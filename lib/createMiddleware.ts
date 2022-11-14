@@ -22,7 +22,9 @@ export const makeProcMiddleware = (
     const sourceName = action.sourceName || null
     const skipInit = action.opts && action.opts.noInit;
     const skipUpdate = action.opts && action.opts.noUpdate;
-    const initConfig = matchInitTrigger(configs, actionType); /// Возвращает  1 конфиг
+    const initConfig = matchInitTrigger(configs, actionType); 
+    const errorHandler = initConfig.config.onError
+    /// Возвращает  1 конфиг
     const updateConfigs = matchUpdateTrigger(configs, actionType); //Возвращает массив конфигов
     if (initConfig && !skipInit) {
       const opts = prepareOpts(initConfig, store, system);
@@ -33,12 +35,13 @@ export const makeProcMiddleware = (
         actionType
       );
       if (instance) {
-        onInit(instance, actionPayload);
+        onInit(instance, actionPayload, actionType, errorHandler);
       }
     }
     if (updateConfigs.length && !skipUpdate) {
       updateConfigs.forEach((c) => {
         const instances = getInstance(c.config, c.trigger, system);
+        const onError = c.config.onError
         instances.forEach((i) => {
           const proppagate = BeforeUpdate(
             i,
@@ -47,7 +50,8 @@ export const makeProcMiddleware = (
             actionPayload,
             sourceName,
             reducers,
-            sliceName
+            sliceName,
+            onError
           );
           if (!proppagate) {
             forceStopPropagate = true;
