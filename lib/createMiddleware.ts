@@ -23,10 +23,10 @@ export const makeProcMiddleware = (
     const skipInit = action.opts && action.opts.noInit;
     const skipUpdate = action.opts && action.opts.noUpdate;
     const initConfig = matchInitTrigger(configs, actionType); 
-    const errorHandler = initConfig.config.onError
     /// Возвращает  1 конфиг
     const updateConfigs = matchUpdateTrigger(configs, actionType); //Возвращает массив конфигов
     if (initConfig && !skipInit) {
+      const errorHandler = initConfig.config.onError
       const opts = prepareOpts(initConfig, store, system);
       const instance = createProcessorInstance(
         system,
@@ -40,7 +40,8 @@ export const makeProcMiddleware = (
     }
     if (updateConfigs.length && !skipUpdate) {
       updateConfigs.forEach((c) => {
-        const instances = getInstance(c.config, c.trigger, system);
+        const instances = getInstance(c.config, c.targetName, system);
+        console.log(instances)
         const onError = c.config.onError
         instances.forEach((i) => {
           const proppagate = BeforeUpdate(

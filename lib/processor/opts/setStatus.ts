@@ -6,7 +6,7 @@ export function SetStatus(store, config, system, uid) {
     if (process.length) {
       store.dispatch({
         sourceName: process[0].sourceName,
-        type: getActionType(config.trigger, status),
+        type: getActionType(config.targetName, status),
         payload: args,
       });
     }

@@ -12,6 +12,8 @@ function pickReducer(reducers: any, trigger: string, status: string): any {
 
 function tryUpdate(instance, updateArgs, actionType, onError) {
     try {
+      console.log(instance)
+      console.log(actionType)
       instance.update(updateArgs)
     } catch(error) {
       if(onError) {
@@ -65,7 +67,9 @@ export function BeforeUpdate(
       }
     }
     else {
-      tryUpdate(instance,updateArgs, actionType, onError);
+      console.log(updateArgs)
+      instance.update(updateArgs)
+      //tryUpdate(instance,updateArgs, actionType, onError);
     }
     if (!propagate && keepUpdate) {
       const stateCopy = { ...state };

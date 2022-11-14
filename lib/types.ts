@@ -169,7 +169,7 @@ export type ScriptUpdateArgsType<
 > = {
   payload: TriggerPhasePayload<ITrigger, Tr, PhK>;
   targetName: Tr;
-  targetMethod: PhK;
+  methodName: PhK;
   sourceName: string;
   sourceUid: string;
   hold: (args?: { keepUpdate: boolean }) => void;

@@ -65,13 +65,13 @@ export class PreventCloseScript {
       'checkReq' | 'clear' | 'set'
     >
   ) {
-    if (args.targetMethod === 'checkReq') {
+    if (args.methodName === 'checkReq') {
       this.handleCheck(args as any);
     }
-    if (args.targetMethod === 'clear') {
+    if (args.methodName === 'clear') {
       this.handleClear(args as any);
     }
-    if (args.targetMethod === 'set') {
+    if (args.methodName === 'set') {
       this.handleSet(args as any);
     }
   }

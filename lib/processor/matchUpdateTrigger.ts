@@ -29,6 +29,6 @@ export function matchUpdateTrigger(configs, actionType) {
     })
     .map((c) => ({
       config: configs[c],
-      trigger: c,
+      targetName: c,
     }));
 }

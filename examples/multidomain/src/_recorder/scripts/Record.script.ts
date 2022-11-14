@@ -54,7 +54,7 @@ export class RecordScript {
     //   console.log(this.records);
     // }
 
-    console.log(`${args.targetName}/${args.targetMethod}`);
+    console.log(`${args.targetName}/${args.methodName}`);
   }
 
   private handleStart(

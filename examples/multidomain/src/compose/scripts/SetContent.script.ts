@@ -174,19 +174,19 @@ export class SetContentScript {
     >
   ) {
     // console.log(this.system)
-    if (args.targetMethod === 'syncForm') {
+    if (args.methodName === 'syncForm') {
       this.handleSyncForm(args as any);
     }
-    if (args.targetMethod === 'openWindow') {
+    if (args.methodName === 'openWindow') {
       this.handleOpenWindow(args as any);
     }
-    if (args.targetMethod === 'closeWindow') {
+    if (args.methodName === 'closeWindow') {
       this.handleCloseWindow(args as any);
     }
-    if (args.targetMethod === 'commitFormContent') {
+    if (args.methodName === 'commitFormContent') {
       this.handleCommitFormContent(args as any);
     }
-    if (args.targetMethod === 'openFromList') {
+    if (args.methodName === 'openFromList') {
       this.handleOpenFromList(args as any);
     }
   }

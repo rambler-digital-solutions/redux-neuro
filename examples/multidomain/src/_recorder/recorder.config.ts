@@ -1,5 +1,5 @@
 import { TriggerPhaseWrapper } from '@seijs/redux-hang-on/lib/types';
-import { Bite, Slice } from '@seijs/redux-hang-on';
+import { createNeuron, createSlice } from '../../../../dist/lib';
 import { IState, ITriggers } from 'src/_redux/types';
 import { RecordScript } from './scripts/Record.script';
 import { PlayScript } from './scripts/Play.script';
@@ -24,7 +24,7 @@ export interface IRecordTriggers {
   setState: Partial<IRecordState>;
 }
 
-export const recordBite = Bite<
+export const recordBite = createNeuron<
   IRecordTriggers,
   ITriggers,
   IRecordState,
@@ -41,12 +41,12 @@ export const recordBite = Bite<
     script: RecordScript,
     instance: 'stable',
     updateOn: [],
-    triggerStatus: 'init',
+    initOn: 'init',
     canTrigger: ['record', 'setState'],
   }
 );
 
-export const playBite = Bite<
+export const playBite = createNeuron<
   IRecordTriggers,
   ITriggers,
   IRecordState,
@@ -62,7 +62,7 @@ export const playBite = Bite<
     script: PlayScript,
     instance: 'stable',
     updateOn: ['play'],
-    triggerStatus: 'init',
+    initOn: 'init',
     canTrigger: ['play'],
   }
 );
@@ -72,7 +72,7 @@ const recorderInitialState: IRecordState = {
   time: 0,
 };
 
-export const recorderSlice = Slice<
+export const recorderSlice = createSlice<
   IRecordTriggers,
   ITriggers,
   IRecordState,
@@ -82,7 +82,10 @@ export const recorderSlice = Slice<
   {
     play: playBite,
     record: recordBite,
-    setState: Bite((state, payload) => Object.assign(state, payload), null),
+    setState: createNeuron(
+      (state, payload) => Object.assign(state, payload),
+      null
+    ),
   },
   recorderInitialState
 );

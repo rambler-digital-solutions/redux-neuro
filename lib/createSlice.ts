@@ -4,16 +4,16 @@ import { MakeBiteType } from './types';
 
 export const createSlice = <ITrigger, IRootTrigger, IState, IRootState>(
   sliceName: string,
-  bites: MakeBiteType<ITrigger, IRootTrigger, IState, IRootState>,
+  neurons: MakeBiteType<ITrigger, IRootTrigger, IState, IRootState>,
   initialState: IState
 ) => {
-  const reducer = Object.keys(bites).reduce(
-    (acc, curKey) => ({ ...acc, [curKey]: bites[curKey].reducer }),
+  const reducer = Object.keys(neurons).reduce(
+    (acc, curKey) => ({ ...acc, [curKey]: neurons[curKey].reducer }),
     {}
   );
-  const processor = Object.keys(bites).reduce((acc, curKey) => {
-    if (bites[curKey].processor) {
-      return { ...acc, [curKey]: bites[curKey].processor };
+  const processor = Object.keys(neurons).reduce((acc, curKey) => {
+    if (neurons[curKey].processor) {
+      return { ...acc, [curKey]: neurons[curKey].processor };
     } else {
       return acc;
     }

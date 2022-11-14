@@ -18,7 +18,7 @@ export function TriggerOnly(store, config, system, uid) {
         });
       } else {
         console.log(
-          `WARNING!: ${config.trigger} can not trigger ${actionType}`
+          `WARNING!: ${config.targetName} can not trigger ${actionType}`
         );
       }
     }
