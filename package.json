@@ -1,10 +1,10 @@
 {
-  "name": "@seijs/redux-hang-on",
-  "version": "0.2.6",
-  "description": "Library for nice and scalable organizing of business logic in redux applications",
+  "name": "@seijs/redux-neuro",
+  "version": "0.3.0",
+  "description": "Decompose buisiness logic",
   "files": ["lib", "index.d.ts", "readme.md"],
   "keywords": ["react", "redux"],
-  "repository": "github:seijs/redux-hang-on",
+  "repository": "github:seijs/redux-neuro",
   "main": "lib/index.js",
   "scripts": {
     "build": "npx tsc",
