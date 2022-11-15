@@ -1,5 +1,4 @@
-import { createNeuron, createSlice } from '../../../../dist/lib';
-import { TriggerPhaseWrapper } from '@seijs/redux-hang-on/lib/types';
+import { createSlice } from '../../../../dist/lib';
 import {
   effectiveBite,
   EffectiveState,

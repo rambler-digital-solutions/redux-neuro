@@ -1,4 +1,3 @@
-import { ILetter } from '../interfaces/Letter.interface';
 import { ILettersState } from '../letters.config';
 
 export const updateLetterReducer = (state: ILettersState, payload: any) => {
