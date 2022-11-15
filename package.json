@@ -2,8 +2,15 @@
   "name": "@seijs/redux-neuro",
   "version": "0.3.0",
   "description": "Decompose buisiness logic",
-  "files": ["lib", "index.d.ts", "readme.md"],
-  "keywords": ["react", "redux"],
+  "files": [
+    "lib",
+    "index.d.ts",
+    "readme.md"
+  ],
+  "keywords": [
+    "react",
+    "redux"
+  ],
   "repository": "github:seijs/redux-neuro",
   "main": "lib/index.js",
   "scripts": {

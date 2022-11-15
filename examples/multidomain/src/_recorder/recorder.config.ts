@@ -13,8 +13,10 @@ export interface IRecordTriggers {
   record: TriggerPhaseWrapper<{
     act: null;
     init: null;
+    makeGraph: null;
     start: null;
     stop: null;
+    setGraph: any;
   }>;
   play: TriggerPhaseWrapper<{
     init: null;
@@ -36,6 +38,8 @@ export const recordBite = createNeuron<
     start: null,
     stop: null,
     init: null,
+    makeGraph: null,
+    setGraph: (state, payload) => Object.assign(state, payload),
   },
   {
     script: RecordScript,

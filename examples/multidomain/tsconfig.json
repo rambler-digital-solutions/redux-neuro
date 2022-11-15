@@ -26,7 +26,7 @@
   },
   "include": [
     "src/**/*.tsx",
-    "src/**/*.ts",
+    "src/**/*.ts", "src/_recorder/components/Graph.jsx",
   ],
   "exclude": [
     "node_modules",
