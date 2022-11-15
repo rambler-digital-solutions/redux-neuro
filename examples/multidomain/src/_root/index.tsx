@@ -16,7 +16,7 @@ const Application = () => (
       <LettersList />
       <Notification />
       <Window />
-      <Recorder />
+      {/* <Recorder /> */}
     </Provider>
   </ErrorBoundary>
 );
