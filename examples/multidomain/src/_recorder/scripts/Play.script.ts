@@ -1,4 +1,4 @@
-import { ScriptUpdateArgsType } from '@seijs/redux-hang-on/lib/types';
+//import { ScriptUpdateArgsType } from '@seijs/redux-hang-on/lib/types';
 import { IState, ITriggers } from 'src/_redux/types';
 import {
   ScriptOptsType,

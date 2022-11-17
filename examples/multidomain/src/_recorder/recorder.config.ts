@@ -1,4 +1,4 @@
-import { TriggerPhaseWrapper } from '@seijs/redux-hang-on/lib/types';
+import { TriggerPhaseWrapper } from '@seijs/redux-neuro/lib/types';
 import { createNeuron, createSlice } from '../../../../dist/lib';
 import { IState, ITriggers } from 'src/_redux/types';
 import { RecordScript } from './scripts/Record.script';

@@ -1,4 +1,4 @@
-import { ScriptUpdateArgsType } from '@seijs/redux-hang-on/lib/types';
+import { ScriptUpdateArgsType } from '@seijs/redux-neuro/lib/types';
 import { IState, ITriggers } from 'src/_redux/types';
 import {
   ScriptOptsType,
@@ -36,7 +36,7 @@ export class NotificationScrit {
       'close'
     >
   ) {
-    if (args.status === 'close') {
+    if (args.methodName === 'close') {
       if (this.timeout) {
         clearTimeout(this.timeout);
       }
